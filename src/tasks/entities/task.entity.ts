@@ -1,12 +1,17 @@
-export class Task {
-  id: string;
-  title: string;
-  description: string;
-  status: TaskStatus;
-}
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { TaskStatus } from '../task.model';
 
-export enum TaskStatus {
-  OPEN = 'OPEN',
-  IN_PROGRESS = 'IN_PROGRESS',
-  DONE = 'DONE',
+@Entity()
+export class Task {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @Column()
+  title: string;
+
+  @Column()
+  description: string;
+
+  @Column()
+  status: TaskStatus;
 }
