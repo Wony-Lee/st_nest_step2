@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TasksModule } from './tasks/tasks.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { Task } from './tasks/entities/task.entity';
 
 @Module({
   imports: [
@@ -19,7 +20,9 @@ import { ConfigModule } from '@nestjs/config';
       database: process.env.DB_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
+      entities: [Task],
     }),
+
     TasksModule,
   ],
   controllers: [AppController],
