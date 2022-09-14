@@ -5,6 +5,8 @@ import { TasksModule } from './tasks/tasks.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { Task } from './tasks/entities/task.entity';
+import { AuthModule } from './auth/auth.module';
+import { User } from './auth/user.entity';
 
 @Module({
   imports: [
@@ -20,10 +22,11 @@ import { Task } from './tasks/entities/task.entity';
       database: process.env.DB_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
-      entities: [Task],
+      entities: [Task, User],
     }),
 
     TasksModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
