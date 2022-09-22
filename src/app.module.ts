@@ -12,6 +12,7 @@ import { User } from './auth/user.entity';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: [`.env`],
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
