@@ -7,12 +7,14 @@ import { ConfigModule } from '@nestjs/config';
 import { Task } from './tasks/entities/task.entity';
 import { AuthModule } from './auth/auth.module';
 import { User } from './auth/user.entity';
+import { configValidationSchema } from './config.schema';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: [`.env`],
+      validationSchema: configValidationSchema,
+      envFilePath: [`.env.${process.env.STAGE}`],
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
